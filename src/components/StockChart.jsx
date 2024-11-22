@@ -10,7 +10,7 @@ import {
 
 // Función para generar fluctuación aleatoria en el precio de la acción
 const generateRandomPrice = (currentPrice) => {
-  const change = (Math.random() - 0.5) * 2; // Fluctuación de -1 a +1
+  const change = (Math.random() - 0.5) * 10; // Fluctuación de -5 a +5
   return parseFloat(Math.max(currentPrice + change, 0).toFixed(2)); // Precio positivo
 };
 
@@ -33,8 +33,13 @@ const StockChart = () => {
   return (
     <div>
       <h2>Precio de la Acción</h2>
-      <LineChart width={500} height={300} data={data}>
-        <Line type="monotone" dataKey="price" stroke="#8884d8" />
+      <LineChart width={600} height={400} data={data}>
+        <Line
+          type="monotone"
+          dataKey="price"
+          stroke="#8884d8"
+          strokeWidth={2}
+        />
         <CartesianGrid stroke="#ccc" />
         <XAxis dataKey="time" />
         <YAxis />
@@ -44,4 +49,4 @@ const StockChart = () => {
   );
 };
 
-export default StockChart; // Asegúrate de exportar el componente correctamente
+export default StockChart;
