@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { FaCreditCard } from "react-icons/fa"; // Icono de tarjeta de débito
 
 const DebitCard = ({ wallet = 0, initialWallet = 100000 }) => {
   const [grossGain, setGrossGain] = useState(0); // Ganancia bruta
@@ -41,26 +42,29 @@ const DebitCard = ({ wallet = 0, initialWallet = 100000 }) => {
   }, [wallet, initialWallet]);
 
   return (
-    <div
-      style={{
-        padding: 20,
-        border: "1px solid #ccc",
-        borderRadius: "10px",
-        marginTop: "20px",
-        width: "80%",
-        margin: "auto",
-      }}
-    >
-      <h3>Tarjeta de Débito</h3>
-      <div>
-        <p>Saldo en el Wallet: {wallet.toFixed(2)} Tokens</p>
-        <p>Saldo Anterior del Wallet: {initialWallet.toFixed(2)} Tokens</p>
-        <p>Ganancia Bruta: {grossGain.toFixed(2)} Tokens</p>
-        <p>
-          Impuestos a Pagar: {taxes.toFixed(2)} Tokens ({taxRateMessage}){" "}
+    <div className="p-8 max-w-5xl mx-auto bg-gray-900 rounded-xl shadow-lg border-2 border-green-500">
+      <h3 className="text-3xl font-bold text-white mb-6 text-center flex items-center justify-center">
+        <FaCreditCard className="mr-2 text-green-500" /> Tarjeta de Débito
+      </h3>
+      <div className="space-y-4">
+        <p className="text-lg text-gray-300">
+          <strong>Saldo Anterior del Wallet:</strong> {initialWallet.toFixed(2)}{" "}
+          Tokens
         </p>
-
-        <p>Saldo Disponible en la Tarjeta: {netBalance.toFixed(2)} Tokens</p>
+        <p className="text-lg text-gray-300">
+          <strong>Saldo en el Wallet:</strong> {wallet.toFixed(2)} Tokens
+        </p>
+        <p className="text-lg text-gray-300">
+          <strong>Ganancia Bruta:</strong> {grossGain.toFixed(2)} Tokens
+        </p>
+        <p className="text-lg text-gray-300">
+          <strong>Impuestos a Pagar:</strong> {taxes.toFixed(2)} Tokens (
+          {taxRateMessage})
+        </p>
+        <p className="text-lg text-gray-300">
+          <strong>Saldo Disponible en la Tarjeta:</strong>{" "}
+          {netBalance.toFixed(2)} Tokens
+        </p>
       </div>
     </div>
   );

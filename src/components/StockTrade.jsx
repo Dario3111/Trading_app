@@ -10,7 +10,7 @@ import {
 import DebitCard from "./DebitCard"; // Importar el componente de la tarjeta
 
 const generateRandomPrice = (currentPrice) => {
-  const change = (Math.random() - 0.5) * 2; // Fluctuación de -1 a +1
+  const change = (Math.random() - 0.5) * 350; // Fluctuación de -175 a +175
   return parseFloat(Math.max(currentPrice + change, 0).toFixed(2)); // Precio positivo
 };
 
@@ -19,7 +19,7 @@ const StockTrade = () => {
   const [data, setData] = useState([]);
   const [wallet, setWallet] = useState(100000); // Saldo inicial del wallet
   const [shares, setShares] = useState(0); // Número de acciones compradas
-  const [gain, setGain] = useState(0); // Ganancia total
+  const [initialWallet, setInitialWallet] = useState(100000); // Saldo inicial del wallet
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -27,7 +27,7 @@ const StockTrade = () => {
       const time = new Date().toLocaleTimeString();
       setData((prev) => [...prev.slice(-20), { time, price: newPrice }]);
       setPrice(newPrice);
-    }, 1000); // Actualizar cada segundo
+    }, 2000); // Actualizar cada segundo
 
     return () => clearInterval(interval);
   }, [price]);
@@ -43,67 +43,66 @@ const StockTrade = () => {
   // Función para manejar la venta de acciones
   const handleSell = () => {
     if (shares > 0) {
-      const newGain = price * shares - wallet; // Calcular ganancia
       setWallet(wallet + price); // Añadir el precio de la acción vendida al wallet
       setShares(shares - 1); // Decrementar acciones
-      setGain(newGain); // Establecer la ganancia
     }
   };
 
   return (
-    <div style={{ padding: 20, maxWidth: "1200px", margin: "auto" }}>
-      <h2>Simulador de Compras y Ventas</h2>
-      <div>
-        <p>Precio de la acción: ${price}</p>
-        <p>Balance en el Wallet: {wallet.toFixed(2)} Tokens</p>
-        <p>Acciones en posesión: {shares}</p>
+    <div className="p-8 max-w-5xl mx-auto bg-gray-900 rounded-xl shadow-lg">
+      <h2 className="text-3xl font-bold text-white mb-6 text-center">
+        Simulador de Trading
+      </h2>
+      <div className="flex flex-col sm:flex-row justify-between items-center bg-gray-800 p-4 rounded-lg mb-6">
+        <p className="text-lg text-green-400">
+          <strong>Precio de la acción:</strong> ${price}
+        </p>
+        <p className="text-lg text-gray-300">
+          <strong>Wallet:</strong> {wallet.toFixed(2)} Tokens
+        </p>
+        <p className="text-lg text-gray-300">
+          <strong>Acciones:</strong> {shares}
+        </p>
       </div>
 
-      <div>
+      <div className="flex justify-center space-x-4 mb-6">
         <button
           onClick={handleBuy}
-          style={{
-            padding: "10px 20px",
-            marginRight: "10px",
-            backgroundColor: "#4CAF50",
-            color: "white",
-            border: "none",
-            borderRadius: "5px",
-          }}
+          className="px-6 py-2 bg-green-500 hover:bg-green-700 text-white font-bold rounded-lg"
         >
           Comprar 1 Acción
         </button>
         <button
           onClick={handleSell}
-          style={{
-            padding: "10px 20px",
-            backgroundColor: "#f44336",
-            color: "white",
-            border: "none",
-            borderRadius: "5px",
-          }}
+          className="px-6 py-2 bg-red-500 hover:bg-red-700 text-white font-bold rounded-lg"
         >
           Vender 1 Acción
         </button>
       </div>
 
-      <h3>Gráfico de Precio</h3>
-      <LineChart width={500} height={300} data={data}>
-        <Line type="monotone" dataKey="price" stroke="#8884d8" />
-        <CartesianGrid stroke="#ccc" />
-        <XAxis dataKey="time" />
-        <YAxis />
-        <Tooltip />
-      </LineChart>
+      <h3 className="text-xl font-semibold text-white mb-4">
+        Gráfico de Precio
+      </h3>
+      <div className="bg-gray-800 p-4 rounded-lg shadow-md">
+        <LineChart width={600} height={300} data={data}>
+          <CartesianGrid stroke="#555" strokeDasharray="3 3" />
+          <XAxis dataKey="time" tick={{ fill: "#ccc" }} />
+          <YAxis tick={{ fill: "#ccc" }} />
+          <Tooltip contentStyle={{ backgroundColor: "#222", border: "none" }} />
+          <Line type="monotone" dataKey="price" stroke="#00FF00" dot={false} />
+        </LineChart>
+      </div>
 
-      <h4>Historial del Wallet</h4>
-      <p>
-        Si compras acciones y el precio sube, ¡ganarás más tokens! Si vendes y
-        el precio baja, perderás valor en tu wallet.
+      <h4 className="text-lg font-medium text-gray-300 mt-6">
+        Historial del Wallet
+      </h4>
+      <p className="text-gray-400">
+        Compra cuando el precio esté bajo y vende cuando suba para obtener
+        ganancias. ¡Administra tu saldo sabiamente!
       </p>
 
       {/* Agregar el componente de la tarjeta de débito al Dashboard */}
-      <DebitCard wallet={wallet} initialWallet={100000} />
+      <DebitCard wallet={wallet} initialWallet={initialWallet} />
     </div>
   );
 };

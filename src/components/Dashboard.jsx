@@ -2,6 +2,7 @@ import React from "react";
 import StockChart from "./StockChart";
 import BannerCarousel from "./BannerCarousel";
 import StockTrade from "./StockTrade";
+import DebitCard from "./DebitCard";
 
 const Dashboard = () => {
   return (

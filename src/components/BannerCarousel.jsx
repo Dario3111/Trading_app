@@ -1,7 +1,7 @@
 import React from "react";
 import Slider from "react-slick";
-// import "slick-carousel/slick/slick.css";
-// import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const BannerCarousel = () => {
   const banners = [
@@ -16,17 +16,23 @@ const BannerCarousel = () => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    pauseOnHover: true,
   };
 
   return (
-    <div style={{ margin: "20px auto", width: "80%" }}>
-      {" "}
-      {/* Añadido para centrar el slider */}
+    <div className="my-8 mx-auto w-4/5">
       <Slider {...settings}>
         {banners.map((banner, index) => (
-          <div key={index} style={{ padding: 20, backgroundColor: "#f5f5f5" }}>
-            <h3>{banner.title}</h3>
-            <p>{banner.description}</p>
+          <div
+            key={index}
+            className="p-6 bg-black bg-opacity-80 border border-green-500 rounded-xl text-center shadow-lg"
+          >
+            <h3 className="text-2xl font-extrabold text-white mb-4">
+              {banner.title}
+            </h3>
+            <p className="text-green-400 text-lg">{banner.description}</p>
           </div>
         ))}
       </Slider>
