@@ -1,70 +1,76 @@
-# Getting Started with Create React App
+# Simulador de Trading
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este proyecto es un simulador de trading que permite a los usuarios comprar y vender acciones de diferentes compañías. Incluye un gráfico de precios en tiempo real, un panel de control para realizar transacciones y una tarjeta de débito que muestra el saldo disponible, las ganancias brutas, los impuestos y el saldo neto después de impuestos.
 
-## Available Scripts
+## Características
 
-In the project directory, you can run:
+- **Gráfico de Precios en Tiempo Real**: Visualiza los cambios de precios de las acciones en tiempo real.
+- **Compra y Venta de Acciones**: Realiza transacciones de compra y venta de acciones.
+- **Tarjeta de Débito**: Muestra el saldo disponible, las ganancias brutas, los impuestos y el saldo neto después de impuestos.
+- **Selección de Acciones**: Elige entre diferentes acciones para realizar transacciones.
 
-### `npm start`
+## Tecnologías Utilizadas
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **React**: Biblioteca de JavaScript para construir interfaces de usuario.
+- **Recharts**: Biblioteca de gráficos para React.
+- **Tailwind CSS**: Framework de CSS para diseño rápido y moderno.
+- **React Icons**: Biblioteca de iconos para React.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Instalación
 
-### `npm test`
+1. Clona el repositorio:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+   ```bash
+   git clone https://github.com/Dario3111/Trading_app.git
+   cd Trading_app
+   ```
 
-### `npm run build`
+2. Instala las dependencias:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   ```bash
+   npm install
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. Inicia la aplicación:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   ```bash
+   npm start
+   ```
 
-### `npm run eject`
+4. Abre tu navegador y visita `http://localhost:3000` para ver la aplicación en funcionamiento.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Uso
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. **Selecciona una Acción**: Usa los botones en la parte inferior para seleccionar la acción que deseas comprar o vender.
+2. **Compra y Venta**: Usa los botones de "Comprar" y "Vender" para realizar transacciones.
+3. **Tarjeta de Débito**: Observa cómo cambia tu saldo, ganancias brutas, impuestos y saldo neto después de cada transacción.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Ecuación Matemática del Gráfico
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+El gráfico de precios se genera dinámicamente sin una tabla de datos. Cada 2 segundos, se genera un nuevo precio aleatorio utilizando la siguiente ecuación:
 
-## Learn More
+\[ \text{nuevoPrecio} = \text{precioActual} + (\text{Math.random()} - 0.5) \times 20 \]
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Esta ecuación aplica un cambio aleatorio al precio actual, asegurando que el nuevo precio no sea menor que 1. El gráfico se actualiza automáticamente para mostrar los nuevos datos.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Contribución
 
-### Code Splitting
+Si deseas contribuir a este proyecto, sigue estos pasos:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+1. Haz un fork del repositorio.
+2. Crea una rama para tu feature (`git checkout -b feature/nueva-caracteristica`).
+3. Realiza tus cambios y haz commit (`git commit -am 'Añadir nueva característica'`).
+4. Haz push a la rama (`git push origin feature/nueva-caracteristica`).
+5. Crea un Pull Request.
 
-### Analyzing the Bundle Size
+## Licencia
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más detalles.
 
-### Making a Progressive Web App
+## Contacto
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Si tienes alguna pregunta o sugerencia, no dudes en contactarme a través de [mi perfil de GitHub](https://github.com/Dario3111).
 
-### Advanced Configuration
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+¡Gracias por usar el Simulador de Trading!
