@@ -3,6 +3,7 @@ import StockChart from "./StockChart";
 import BannerCarousel from "./BannerCarousel";
 import StockTrade from "./StockTrade";
 import DebitCard from "./DebitCard";
+import StockButtons from "./StockButtons";
 
 const Dashboard = () => {
   return (
@@ -10,7 +11,8 @@ const Dashboard = () => {
       <h1>Simulador de Trading</h1>
       <BannerCarousel />
       <StockChart />
-      <StockTrade /> {/* Aquí integras el componente de StockTrade */}
+      <StockTrade />
+      <StockButtons />
     </div>
   );
 };
