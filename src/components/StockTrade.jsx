@@ -7,20 +7,22 @@ import {
   CartesianGrid,
   Tooltip,
 } from "recharts";
-import DebitCard from "./DebitCard"; // Importar el componente de la tarjeta
-import { FaShoppingCart, FaMoneyBillAlt } from "react-icons/fa"; // Iconos de react-icons
 
 const generateRandomPrice = (currentPrice) => {
-  const change = (Math.random() - 0.5) * 350; // Fluctuación de -175 a +175
-  return parseFloat(Math.max(currentPrice + change, 0).toFixed(2)); // Precio positivo
+  const change = (Math.random() - 0.5) * 20; // Cambios pequeños en el precio
+  return parseFloat(Math.max(currentPrice + change, 1).toFixed(2));
 };
 
-const StockTrade = () => {
-  const [price, setPrice] = useState(100); // Precio de la acción
+const StockTrade = ({ selectedStock, wallet, setWallet }) => {
+  const [price, setPrice] = useState(selectedStock.basePrice);
   const [data, setData] = useState([]);
-  const [wallet, setWallet] = useState(100000); // Saldo inicial del wallet
-  const [shares, setShares] = useState(0); // Número de acciones compradas
-  const [initialWallet, setInitialWallet] = useState(100000); // Saldo inicial del wallet
+  const [shares, setShares] = useState(0);
+
+  useEffect(() => {
+    setPrice(selectedStock.basePrice);
+    setShares(0);
+    setData([]);
+  }, [selectedStock]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -28,24 +30,22 @@ const StockTrade = () => {
       const time = new Date().toLocaleTimeString();
       setData((prev) => [...prev.slice(-20), { time, price: newPrice }]);
       setPrice(newPrice);
-    }, 2000); // Actualizar cada segundo
+    }, 2000);
 
     return () => clearInterval(interval);
   }, [price]);
 
-  // Función para manejar la compra de acciones
   const handleBuy = () => {
     if (wallet >= price) {
-      setWallet(wallet - price); // Deduct price from wallet
-      setShares(shares + 1); // Increment shares
+      setWallet(wallet - price);
+      setShares(shares + 1);
     }
   };
 
-  // Función para manejar la venta de acciones
   const handleSell = () => {
     if (shares > 0) {
-      setWallet(wallet + price); // Añadir el precio de la acción vendida al wallet
-      setShares(shares - 1); // Decrementar acciones
+      setWallet(wallet + price);
+      setShares(shares - 1);
     }
   };
 
@@ -68,15 +68,18 @@ const StockTrade = () => {
         </LineChart>
       </div>
 
-      <div className="flex flex-col sm:flex-row justify-between items-center bg-gray-800 p-4 rounded-lg mb-6">
-        <p className="text-lg text-green-400">
+      <div className="flex justify-between items-center bg-gray-800 p-4 rounded-lg mb-6">
+        <p className="text-lg text-gray-300">
           <strong>Precio de la acción:</strong> ${price}
         </p>
         <p className="text-lg text-gray-300">
           <strong>Wallet:</strong> {wallet.toFixed(2)} Tokens
         </p>
-        <p className="text-lg text-gray-300">
-          <strong>Acciones:</strong> {shares}
+        <p className="text-lg text-gray-300 flex items-center">
+          <strong>Acciones:</strong>{" "}
+          <span className="ml-2 text-xl">
+            {selectedStock.logo} {shares}
+          </span>
         </p>
       </div>
 
@@ -85,25 +88,15 @@ const StockTrade = () => {
           onClick={handleBuy}
           className="px-6 py-2 bg-transparent border-2 border-green-500 hover:bg-green-500 text-white font-bold rounded-lg shadow-lg transition duration-300"
         >
-          <FaShoppingCart className="text-2xl" />
+          Comprar
         </button>
         <button
           onClick={handleSell}
           className="px-6 py-2 bg-transparent border-2 border-red-500 hover:bg-red-500 text-white font-bold rounded-lg shadow-lg transition duration-300"
         >
-          <FaMoneyBillAlt className="text-2xl" />
+          Vender
         </button>
       </div>
-
-      <h4 className="text-lg font-medium text-gray-300 mt-6">
-        Historial del Wallet
-      </h4>
-      <p className="text-gray-400">
-        Compra cuando el precio esté bajo y vende cuando suba para obtener
-        ganancias. ¡Administra tu saldo sabiamente!
-      </p>
-
-      <DebitCard wallet={wallet} initialWallet={initialWallet} />
     </div>
   );
 };

@@ -5,16 +5,15 @@ import {
   FaMoneyBillWave,
   FaHandHoldingUsd,
   FaPercentage,
-} from "react-icons/fa"; // Iconos de react-icons
+} from "react-icons/fa";
 
 const DebitCard = ({ wallet = 0, initialWallet = 100000 }) => {
-  const [grossGain, setGrossGain] = useState(0); // Ganancia bruta
-  const [taxes, setTaxes] = useState(0); // Impuestos a pagar
-  const [netBalance, setNetBalance] = useState(0); // Balance final después de impuestos
-  const [taxRate, setTaxRate] = useState(0); // Porcentaje de impuestos aplicado
-  const [taxRateMessage, setTaxRateMessage] = useState(""); // Mensaje del porcentaje de impuestos aplicado
+  const [grossGain, setGrossGain] = useState(0);
+  const [taxes, setTaxes] = useState(0);
+  const [netBalance, setNetBalance] = useState(0);
+  const [taxRate, setTaxRate] = useState(0);
+  const [taxRateMessage, setTaxRateMessage] = useState("");
 
-  // Calcular impuestos basados en la ganancia bruta
   const calculateTaxes = (grossGain) => {
     let tax = 0;
     if (grossGain <= 6000) {
@@ -34,15 +33,12 @@ const DebitCard = ({ wallet = 0, initialWallet = 100000 }) => {
   };
 
   useEffect(() => {
-    // La ganancia bruta es la diferencia entre el saldo final del wallet y el saldo inicial
-    const newGrossGain = wallet - initialWallet; // La ganancia o pérdida proporcionada
+    const newGrossGain = wallet - initialWallet;
     setGrossGain(newGrossGain);
 
-    // Calcular impuestos sobre la ganancia bruta
     const calculatedTaxes = calculateTaxes(newGrossGain);
     setTaxes(calculatedTaxes);
 
-    // El saldo disponible en la tarjeta es la ganancia bruta menos los impuestos
     const newNetBalance = newGrossGain - calculatedTaxes;
     setNetBalance(newNetBalance > 0 ? newNetBalance : 0);
   }, [wallet, initialWallet]);
