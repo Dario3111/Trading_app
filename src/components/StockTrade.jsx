@@ -8,6 +8,7 @@ import {
   Tooltip,
 } from "recharts";
 import DebitCard from "./DebitCard"; // Importar el componente de la tarjeta
+import { FaShoppingCart, FaMoneyBillAlt } from "react-icons/fa"; // Iconos de react-icons
 
 const generateRandomPrice = (currentPrice) => {
   const change = (Math.random() - 0.5) * 350; // Fluctuación de -175 a +175
@@ -53,6 +54,20 @@ const StockTrade = () => {
       <h2 className="text-3xl font-bold text-white mb-6 text-center">
         Simulador de Trading
       </h2>
+
+      <h3 className="text-xl font-semibold text-white mb-4">
+        Gráfico de Precio
+      </h3>
+      <div className="bg-gray-800 p-4 rounded-lg shadow-md">
+        <LineChart width={600} height={300} data={data}>
+          <CartesianGrid stroke="#555" strokeDasharray="3 3" />
+          <XAxis dataKey="time" tick={{ fill: "#ccc" }} />
+          <YAxis tick={{ fill: "#ccc" }} />
+          <Tooltip contentStyle={{ backgroundColor: "#222", border: "none" }} />
+          <Line type="monotone" dataKey="price" stroke="#00FF00" dot={false} />
+        </LineChart>
+      </div>
+
       <div className="flex flex-col sm:flex-row justify-between items-center bg-gray-800 p-4 rounded-lg mb-6">
         <p className="text-lg text-green-400">
           <strong>Precio de la acción:</strong> ${price}
@@ -68,29 +83,16 @@ const StockTrade = () => {
       <div className="flex justify-center space-x-4 mb-6">
         <button
           onClick={handleBuy}
-          className="px-6 py-2 bg-green-500 hover:bg-green-700 text-white font-bold rounded-lg"
+          className="px-6 py-2 bg-transparent border-2 border-green-500 hover:bg-green-500 text-white font-bold rounded-lg shadow-lg transition duration-300"
         >
-          Comprar 1 Acción
+          <FaShoppingCart className="text-2xl" />
         </button>
         <button
           onClick={handleSell}
-          className="px-6 py-2 bg-red-500 hover:bg-red-700 text-white font-bold rounded-lg"
+          className="px-6 py-2 bg-transparent border-2 border-red-500 hover:bg-red-500 text-white font-bold rounded-lg shadow-lg transition duration-300"
         >
-          Vender 1 Acción
+          <FaMoneyBillAlt className="text-2xl" />
         </button>
-      </div>
-
-      <h3 className="text-xl font-semibold text-white mb-4">
-        Gráfico de Precio
-      </h3>
-      <div className="bg-gray-800 p-4 rounded-lg shadow-md">
-        <LineChart width={600} height={300} data={data}>
-          <CartesianGrid stroke="#555" strokeDasharray="3 3" />
-          <XAxis dataKey="time" tick={{ fill: "#ccc" }} />
-          <YAxis tick={{ fill: "#ccc" }} />
-          <Tooltip contentStyle={{ backgroundColor: "#222", border: "none" }} />
-          <Line type="monotone" dataKey="price" stroke="#00FF00" dot={false} />
-        </LineChart>
       </div>
 
       <h4 className="text-lg font-medium text-gray-300 mt-6">
@@ -101,7 +103,6 @@ const StockTrade = () => {
         ganancias. ¡Administra tu saldo sabiamente!
       </p>
 
-      {/* Agregar el componente de la tarjeta de débito al Dashboard */}
       <DebitCard wallet={wallet} initialWallet={initialWallet} />
     </div>
   );

@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { FaCreditCard } from "react-icons/fa"; // Icono de tarjeta de débito
+import {
+  FaCreditCard,
+  FaWallet,
+  FaMoneyBillWave,
+  FaHandHoldingUsd,
+  FaPercentage,
+} from "react-icons/fa"; // Iconos de react-icons
 
 const DebitCard = ({ wallet = 0, initialWallet = 100000 }) => {
   const [grossGain, setGrossGain] = useState(0); // Ganancia bruta
@@ -42,29 +48,33 @@ const DebitCard = ({ wallet = 0, initialWallet = 100000 }) => {
   }, [wallet, initialWallet]);
 
   return (
-    <div className="p-8 max-w-5xl mx-auto bg-gray-900 rounded-xl shadow-lg border-2 border-green-500">
+    <div className="p-8 max-w-5xl mx-auto bg-gradient-to-r from-gray-800 to-gray-900 rounded-xl shadow-lg border-2 border-green-500 backdrop-blur-md bg-opacity-75">
       <h3 className="text-3xl font-bold text-white mb-6 text-center flex items-center justify-center">
         <FaCreditCard className="mr-2 text-green-500" /> Tarjeta de Débito
       </h3>
       <div className="space-y-4">
-        <p className="text-lg text-gray-300">
-          <strong>Saldo Anterior del Wallet:</strong> {initialWallet.toFixed(2)}{" "}
-          Tokens
-        </p>
-        <p className="text-lg text-gray-300">
-          <strong>Saldo en el Wallet:</strong> {wallet.toFixed(2)} Tokens
-        </p>
-        <p className="text-lg text-gray-300">
-          <strong>Ganancia Bruta:</strong> {grossGain.toFixed(2)} Tokens
-        </p>
-        <p className="text-lg text-gray-300">
-          <strong>Impuestos a Pagar:</strong> {taxes.toFixed(2)} Tokens (
-          {taxRateMessage})
-        </p>
-        <p className="text-lg text-gray-300">
-          <strong>Saldo Disponible en la Tarjeta:</strong>{" "}
-          {netBalance.toFixed(2)} Tokens
-        </p>
+        <div className="flex items-center text-lg text-gray-300">
+          <FaWallet className="mr-2" />
+          <span>{initialWallet.toFixed(2)} Tokens</span>
+        </div>
+        <div className="flex items-center text-lg text-gray-300">
+          <FaMoneyBillWave className="mr-2" />
+          <span>{wallet.toFixed(2)} Tokens</span>
+        </div>
+        <div className="flex items-center text-lg text-gray-300">
+          <FaHandHoldingUsd className="mr-2" />
+          <span>{grossGain.toFixed(2)} Tokens</span>
+        </div>
+        <div className="flex items-center text-lg text-gray-300">
+          <FaPercentage className="mr-2" />
+          <span>
+            {taxes.toFixed(2)} Tokens ({taxRateMessage})
+          </span>
+        </div>
+        <div className="flex items-center text-lg text-gray-300">
+          <FaCreditCard className="mr-2" />
+          <span>{netBalance.toFixed(2)} Tokens</span>
+        </div>
       </div>
     </div>
   );
