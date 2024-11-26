@@ -4,15 +4,19 @@ import BannerCarousel from "./BannerCarousel";
 import StockTrade from "./StockTrade";
 import DebitCard from "./DebitCard";
 import TradingViewWidget from "./TradingViewWidget";
+import TradingReviewComponent from "./TradingReviewComponent";
+import TradingReviewTwo from "./TradingReviewTwo";
 
 const Dashboard = () => {
   return (
-    <div style={{ padding: 20, maxWidth: "1200px", margin: "auto" }}>
-      <h1>Simulador de Trading</h1>
+    <div className="p-5 max-w-5xl mx-auto space-y-5">
+      <h1 className="text-2xl font-bold">Simulador de Trading</h1>
       <BannerCarousel />
       <StockChart />
       <StockTrade /> {/* Aquí integras el componente de StockTrade */}
       <TradingViewWidget />
+      <TradingReviewComponent />
+      <TradingReviewTwo />
     </div>
   );
 };
