@@ -6,6 +6,8 @@ import DebitCard from "./DebitCard";
 import TradingViewWidget from "./TradingViewWidget";
 import TradingReviewComponent from "./TradingReviewComponent";
 import TradingReviewTwo from "./TradingReviewTwo";
+import LetterAvatars from "./LetterAvatars";
+import ImageAvatars from "./ImageAvatars";
 
 const Dashboard = () => {
   return (
@@ -17,6 +19,8 @@ const Dashboard = () => {
       <TradingViewWidget />
       <TradingReviewComponent />
       <TradingReviewTwo />
+      <LetterAvatars />
+      <ImageAvatars />
     </div>
   );
 };
