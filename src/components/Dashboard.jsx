@@ -4,6 +4,7 @@ import StockChart from "./StockChart";
 import StockTrade from "./StockTrade";
 import StockButtons from "./StockButtons";
 import DebitCard from "./DebitCard";
+import VoiceAssistButton from "./VoiceAssistButton";
 
 const Dashboard = () => {
   const [stocks] = useState([
@@ -26,6 +27,7 @@ const Dashboard = () => {
   return (
     <div style={{ padding: 20, maxWidth: "1200px", margin: "auto" }}>
       <h1>Simulador de Trading</h1>
+      <VoiceAssistButton text="Bienvenidos al simulador de trading" />
       <BannerCarousel />
       <StockChart />
       <StockTrade
