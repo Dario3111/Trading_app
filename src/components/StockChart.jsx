@@ -8,26 +8,24 @@ import {
   Tooltip,
 } from "recharts";
 
-// Función para generar fluctuación aleatoria en el precio de la acción
 const generateRandomPrice = (currentPrice) => {
-  const change = (Math.random() - 0.5) * 10; // Fluctuación de -5 a +5
-  return parseFloat(Math.max(currentPrice + change, 0).toFixed(2)); // Precio positivo
+  const change = (Math.random() - 0.5) * 10;
+  return parseFloat(Math.max(currentPrice + change, 0).toFixed(2));
 };
 
 const StockChart = () => {
   const [data, setData] = useState([]);
-  const [price, setPrice] = useState(100); // Precio inicial de la acción
+  const [price, setPrice] = useState(100);
 
-  // useEffect para actualizar los precios cada segundo
   useEffect(() => {
     const interval = setInterval(() => {
-      const time = new Date().toLocaleTimeString(); // Hora actual
-      const newPrice = generateRandomPrice(price); // Nuevo precio calculado
-      setData((prev) => [...prev.slice(-20), { time, price: newPrice }]); // Mantiene los últimos 20 datos
-      setPrice(newPrice); // Actualiza el precio
-    }, 1000); // Intervalo de 1 segundo
+      const time = new Date().toLocaleTimeString();
+      const newPrice = generateRandomPrice(price);
+      setData((prev) => [...prev.slice(-20), { time, price: newPrice }]);
+      setPrice(newPrice);
+    }, 1000);
 
-    return () => clearInterval(interval); // Limpiar intervalo al desmontar el componente
+    return () => clearInterval(interval);
   }, [price]);
 
   return (

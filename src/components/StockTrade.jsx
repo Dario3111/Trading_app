@@ -9,7 +9,7 @@ import {
 } from "recharts";
 
 const generateRandomPrice = (currentPrice) => {
-  const change = (Math.random() - 0.5) * 20; // Cambios pequeños en el precio
+  const change = (Math.random() - 0.5) * 20;
   return parseFloat(Math.max(currentPrice + change, 1).toFixed(2));
 };
 
