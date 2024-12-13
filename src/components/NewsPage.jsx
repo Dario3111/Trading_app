@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import axios from "axios";
 import SearchNews from "./SearchNews";
 import TrendingTopics from "./TrendingTopics";
-import { FaTimes } from "react-icons/fa"; // Icono de "cerrar" sección
+import { FaTimes } from "react-icons/fa";
 
 const NewsPage = () => {
   const [articles, setArticles] = useState([]);
-  const [showArticles, setShowArticles] = useState(false); // Controla si se muestran las noticias
+  const [showArticles, setShowArticles] = useState(false);
 
   const fetchNews = async (query) => {
     const apiKey = process.env.REACT_APP_API_KEY_NEWS;
@@ -15,14 +15,14 @@ const NewsPage = () => {
     try {
       const response = await axios.get(url);
       setArticles(response.data.articles);
-      setShowArticles(true); // Mostrar noticias cuando se obtienen
+      setShowArticles(true);
     } catch (error) {
       console.error("Error al buscar noticias:", error);
     }
   };
 
   const toggleArticlesVisibility = () => {
-    setShowArticles(!showArticles); // Alternar la visibilidad de las noticias
+    setShowArticles(!showArticles);
   };
 
   return (
@@ -31,7 +31,6 @@ const NewsPage = () => {
       <SearchNews onSearch={fetchNews} />
       <TrendingTopics onSelect={fetchNews} />
 
-      {/* Solo aparece el botón para ocultar cuando las noticias están desplegadas */}
       {showArticles && (
         <button
           onClick={toggleArticlesVisibility}
@@ -41,7 +40,6 @@ const NewsPage = () => {
         </button>
       )}
 
-      {/* Solo muestra las noticias si showArticles es true */}
       {showArticles && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
           {articles.map((article, index) => (
