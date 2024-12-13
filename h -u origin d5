@@ -1,8 +1,0 @@
-[33mf5ffd08[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32md5[m[33m, [m[1;32md4[m[33m)[m readme.md
-[33mc847d2f[m[33m ([m[1;31morigin/d4[m[33m)[m icon StockTrade
-[33m2658728[m add  StockButtons
-[33m9c4e1f6[m[33m ([m[1;31morigin/develop[m[33m, [m[1;31morigin/d3[m[33m, [m[1;32mdevelop[m[33m, [m[1;32md3[m[33m)[m Refactor UI: text labels replaced with icons
-[33mf6a85fb[m Feature: Updated all credit card operation
-[33m1e9a45d[m Feature: Calculate tax percentages in DebitCard component based on income
-[33m33cb9da[m[33m ([m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m firt commit
-[33m2f29604[m Initialize project using Create React App

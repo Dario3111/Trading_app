@@ -5,6 +5,7 @@ import StockTrade from "./StockTrade";
 import StockButtons from "./StockButtons";
 import DebitCard from "./DebitCard";
 import VoiceAssistButton from "./VoiceAssistButton";
+import NewsPage from "./NewsPage";
 
 const Dashboard = () => {
   const [stocks] = useState([
@@ -37,6 +38,7 @@ const Dashboard = () => {
       />
       <DebitCard wallet={wallet} />
       <StockButtons stocks={stocks} updateSelectedStock={updateSelectedStock} />
+      <NewsPage />
     </div>
   );
 };
