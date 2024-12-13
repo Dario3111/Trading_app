@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 
 const SearchNews = ({ onSearch }) => {
   const [query, setQuery] = useState("");
@@ -12,17 +11,20 @@ const SearchNews = ({ onSearch }) => {
   };
 
   return (
-    <form onSubmit={handleSearch} className="flex gap-2">
+    <form
+      onSubmit={handleSearch}
+      className="flex gap-2 flex-wrap bg-[rgb(22,22,34)] p-4 rounded-lg"
+    >
       <input
         type="text"
         placeholder="Buscar noticias de acciones..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        className="w-full p-2 border rounded-md"
+        className="w-full sm:w-3/4 p-3 border border-[#71717a] rounded-lg text-white bg-[#787880] focus:outline-none focus:ring-2 focus:ring-[rgb(119,217,144)] transition"
       />
       <button
         type="submit"
-        className="px-4 py-2 bg-blue-500 text-white rounded-md"
+        className="sm:w-1/4 px-4 py-3 bg-[rgb(119,217,144)] text-[#000000] rounded-lg hover:bg-green-600 transition"
       >
         Buscar
       </button>
