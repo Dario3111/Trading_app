@@ -14,7 +14,9 @@ const Dashboard = () => {
     { name: "AAPL", logo: "🍎", basePrice: 3200 },
     { name: "AMZN", logo: "📦", basePrice: 300 },
     { name: "MSFT", logo: "🖥️", basePrice: 250 },
-    { name: "INTC", logo: "💾", basePrice: 80 },
+    { name: "INTC", logo: "💾", basePrice: 1 },
+    { name: "ITX", logo: "👗", basePrice: 25 },
+    { name: "GLD", logo: "🏦", basePrice: 1800 },
   ]);
 
   const [selectedStock, setSelectedStock] = useState(stocks[0]);
